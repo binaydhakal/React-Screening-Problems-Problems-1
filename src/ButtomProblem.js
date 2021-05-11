@@ -1,16 +1,9 @@
-import {
-  useState,
-  useEffect,
-  useReducer,
-  createContext,
-  useContext,
-} from "react";
+import { useState, useEffect, useContext } from "react";
 import { StateContext } from "./App";
 import "./App.css";
-import reducer, { initialState } from "./reducer";
 
-function ButtomProblem() {
-  const [check, setCheck] = useState(0);
+const ButtomProblem = () => {
+  const [check, setCheck] = useState(0); // for checking if same color is generated more than once sequentially.
   const [colors, setColors] = useState("");
   const { colorList, dispatch } = useContext(StateContext);
 
@@ -19,28 +12,26 @@ function ButtomProblem() {
       type: "ADD__COLOR",
       colour: colors,
     });
-  }, [check]);
+  }, [check]); // running useEffect whenever the check changes means whenever the button is pressed.
+  //if we run useEffect for change in colors then when same color is generated in a sequence for more than once then
+  //only once the color will be recorded.
 
   const handleClick = () => {
-    setCheck(check + 1);
+    setCheck(check + 1); //increases whenever the button is pressed and useeffect runs.
     document.getElementById("btn").style.color = "white";
     const color = ["red", "green", "blue", "black", "orange"];
     const min = 0;
     const max = 4;
     const rand = min + Math.random() * (max - min);
     if (colors === "blue") {
-      console.log("yeha ta aaye haiii");
       document.getElementById("btn").style.backgroundColor = `${color[1]}`;
       setColors(color[1]);
     } else {
-      console.log("aayena");
       document.getElementById("btn").style.backgroundColor = `${
         color[rand.toFixed()]
       }`;
       setColors(color[rand.toFixed()]);
     }
-    console.log(colors);
-    console.log(colorList);
   };
 
   return (
@@ -60,6 +51,6 @@ function ButtomProblem() {
       </div>
     </div>
   );
-}
+};
 
 export default ButtomProblem;
