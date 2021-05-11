@@ -35,8 +35,16 @@ const ButtomProblem = () => {
   };
 
   return (
-    <div className="ButtomProblem">
-      <div className="button__problems">
+    <div className="ButtomProblem" style={{ margin: "50px" }}>
+      <div
+        className="button__problems"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <button id="btn" onClick={handleClick}>
           Click Me
         </button>
